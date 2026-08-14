@@ -1,3 +1,11 @@
+---
+layout: "../layouts/Base.astro"
+title: "Mostrar las 2 barras en ambas pantallas con una tecla"
+subtitle: "KDE Plasma · Barras en 2 pantallas"
+page: "barras-pantallas"
+prose: true
+---
+
 # PENDIENTE · Mostrar las 2 barras en ambas pantallas con una tecla
 
 > **Para hacer mañana** · Fecha del estudio: 11/08/2026 · KDE Plasma 6.7.4 · Arch Linux · Wayland

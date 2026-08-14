@@ -1,0 +1,244 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Kbd from "../components/Kbd.astro";
+import Note from "../components/Note.astro";
+import Tag from "../components/Tag.astro";
+---
+
+<Base
+  title="⚡ Mis Atajos de Teclado"
+  subtitle="KDE Plasma 6 · Arch Linux · Fecha: 07/08/2026"
+  page="atajos"
+  showSearch
+>
+  <!-- SECCIÓN 1 -->
+  <Section title="Mis atajos principales" color="accent">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="text-left text-xs uppercase tracking-wider text-muted">
+          <th class="border-b border-border/60 px-3 py-2.5">Acción</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Atajo</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Abrir Visual Studio Code</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + C</Kbd> <Tag color="app">script</Tag></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre VS Code en la carpeta activa de Dolphin (tu script <i>open-code</i>)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Abrir Archivos (Dolphin)</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + E</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre el administrador de archivos</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Abrir Consola (Ghostty)</td>
+          <td class="px-3 py-2.5"><Kbd>Ctrl + Alt + T</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre la terminal (Ghostty, el atajo global actualmente apunta a Ghostty, no a Konsole)</td>
+        </tr>
+      </tbody>
+    </table>
+    <Note title="💡 Nota:">
+      La tecla <Kbd>Meta</Kbd> es la tecla de <b class="text-text">Windows / Super</b> de tu teclado.
+      El atajo de VS Code es <b class="text-text">Meta+C</b>, no Ctrl+C (esa combinación se usa para copiar).
+    </Note>
+    <Note type="warn" title="⚠️ Cuidado con Meta + Fn:">
+      Si pulsas <Kbd>Meta + Fn</Kbd> (por ejemplo al intentar Alt+Fn+F4 y fallar la tecla), el firmware del portátil Lenovo
+      <b class="text-text"> desactiva la tecla Meta</b> a nivel de hardware. Para reactivarla pulsa <Kbd>Fn + Meta</Kbd>
+      de nuevo (es un interruptor, como un "Caps Lock" de la tecla Super). Si no funciona, reinicia el equipo.
+    </Note>
+  </Section>
+
+  <!-- SECCIÓN 2 -->
+  <Section title="Manejo de ventanas" color="green">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="text-left text-xs uppercase tracking-wider text-muted">
+          <th class="border-b border-border/60 px-3 py-2.5">Acción</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Atajo</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Maximizar ventana</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + PgUp</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Amplía la ventana a pantalla completa</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Minimizar ventana</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + PgDn</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Esconde la ventana a la barra de tareas</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Restaurar ventana</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + PgDn</Kbd> <i class="text-muted">(otra vez)</i></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Devuelve el tamaño anterior</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Cerrar ventana</td>
+          <td class="px-3 py-2.5">
+            <Kbd>Meta + F</Kbd> <Tag color="term">nuevo</Tag> · <Kbd>Alt + F4</Kbd>
+          </td>
+          <td class="px-3 py-2.5 text-sm text-muted">
+            Cierra la ventana activa. <b class="text-text">Meta+F</b> se añadió como 2º atajo: evita la capa <i>Fn</i> del 60% (F está en <Kbd>Fn + 4</Kbd>) y el alt de <Kbd>Meta + Q</Kbd>/<Kbd>W</Kbd> ya estaba ocupado por Actividades/Overview
+          </td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">⚠️ Desactiva la tecla Meta</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + Fn</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">No lo pulses por error: apaga la tecla Super por firmware</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">✅ Reactiva la tecla Meta</td>
+          <td class="px-3 py-2.5"><Kbd>Fn + Meta</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Lo mismo pero al revés: vuelve a encenderla</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Cambiar de ventana</td>
+          <td class="px-3 py-2.5"><Kbd>Alt + Tab</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Alterna entre ventanas abiertas</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Mostrar escritorio</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + D</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Minimiza todo / muestra el escritorio</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Ventana a la izquierda / derecha</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + ←</Kbd> / <Kbd>→</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Ajusta la ventana a media pantalla</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Ajustar a esquina</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + ←</Kbd> <i class="text-muted">y luego</i> <Kbd>↑</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Coloca la ventana en un cuarto de la pantalla</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Cambiar escritorio virtual</td>
+          <td class="px-3 py-2.5"><Kbd>Ctrl + F1-F4</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Navega entre escritorios virtuales</td>
+        </tr>
+      </tbody>
+    </table>
+    <Note type="warn" title="⚠️ ¿Por qué pasa?">
+      Tu IdeaPad Slim 3 (Lenovo) trae un interruptor por firmware en el teclado:
+      <Kbd>Fn + Super</Kbd> bloquea/desbloquea la tecla Meta (Windows) <b class="text-text">antes</b> de que KDE siquiera la vea.
+      No es un fallo de Arch ni de KDE. Lo activas sin querer cuando quieres hacer <Kbd>Alt + F4</Kbd>
+      pero tu dedo cae en la tecla Meta. La solución es siempre la misma: <b class="text-text">Fn + Meta</b> la reactiva al instante.
+    </Note>
+  </Section>
+
+  <!-- SECCIÓN 3 -->
+  <Section title="Atajos del sistema KDE" color="purple">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="text-left text-xs uppercase tracking-wider text-muted">
+          <th class="border-b border-border/60 px-3 py-2.5">Acción</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Atajo</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Menú de inicio</td>
+          <td class="px-3 py-2.5"><Kbd>Meta</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre el lanzador de aplicaciones</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">KRunner (buscador)</td>
+          <td class="px-3 py-2.5"><Kbd>Alt + Espacio</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Busca apps, archivos y ejecuta comandos</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Bloquear pantalla</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + L</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Bloquea la sesión (en Plasma 6 ya no es Ctrl+Alt+L)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Captura de pantalla</td>
+          <td class="px-3 py-2.5"><Kbd>ImpPantalla</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre Spectacle (captura completa)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Captura de área</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + Shift + ImpPantalla</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Selecciona una zona de la pantalla (región)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Capturar ventana activa</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + ImpPantalla</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Captura solo la ventana enfocada</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Administrador de tareas</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + Esc</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre System Monitor</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Cerrar sesión</td>
+          <td class="px-3 py-2.5"><Kbd>Ctrl + Alt + Supr</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Muestra opciones de sesión (apagar, reiniciar...)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Escritorio virtual anterior / siguiente</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + Ctrl + ←</Kbd> / <Kbd>→</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Alterna entre escritorios virtuales (no confundir con Meta+← que divide la ventana)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Cambiar idioma teclado</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + Alt + K</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Alterna entre distribuciones de teclado (en tu config es Meta+Alt+K)</td>
+        </tr>
+      </tbody>
+    </table>
+  </Section>
+
+  <!-- SECCIÓN 4 -->
+  <Section title="Comandos básicos de terminal" color="red">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="text-left text-xs uppercase tracking-wider text-muted">
+          <th class="border-b border-border/60 px-3 py-2.5">Comando</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Qué hace</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>ls</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Lista los archivos de la carpeta actual</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>ls -la</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Lista todo, incluidos archivos ocultos, con detalles</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>cd carpeta</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Entra a una carpeta</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>cd ..</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Sube a la carpeta anterior</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>mkdir nombre</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Crea una nueva carpeta</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>touch archivo</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Crea un archivo vacío</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>cp origen destino</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Copia un archivo</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>mv origen destino</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Mueve o renombra</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>rm archivo</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Elimina un archivo (¡cuidado!)</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>pwd</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Muestra la carpeta donde estás</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>code .</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Abre VS Code en la carpeta actual <Tag color="app">VS Code</Tag></td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>sudo pacman -S paquete</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Instala un paquete en Arch</td></tr>
+        <tr class="border-b border-border/40 last:border-0"><td class="px-3 py-2.5"><Kbd>ctrl + c</Kbd></td><td class="px-3 py-2.5 text-sm text-muted">Cancela el comando actual en la terminal</td></tr>
+      </tbody>
+    </table>
+  </Section>
+</Base>
+
+<script>
+  const input = document.getElementById("buscar");
+  const sections = document.querySelectorAll("section");
+
+  input?.addEventListener("input", () => {
+    const q = input.value.toLowerCase().trim();
+    sections.forEach((sec) => {
+      const rows = sec.querySelectorAll("tbody tr");
+      let visible = 0;
+      rows.forEach((row) => {
+        const match = (row.textContent ?? "").toLowerCase().includes(q);
+        row.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      sec.classList.toggle("hidden", q !== "" && visible === 0);
+    });
+  });
+</script>

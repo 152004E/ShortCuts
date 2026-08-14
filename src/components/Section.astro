@@ -1,0 +1,31 @@
+---
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  color?: "accent" | "green" | "purple" | "red" | "yellow";
+  tagLabel?: string;
+  tagColor?: "kde" | "app" | "term" | "warn";
+}
+
+const { title, color = "accent", tagLabel, tagColor = "kde" } = Astro.props;
+
+const colors: Record<string, string> = {
+  accent: "bg-accent",
+  green: "bg-green",
+  purple: "bg-purple",
+  red: "bg-red",
+  yellow: "bg-yellow",
+};
+---
+
+<section class="mb-7 rounded-2xl border border-border bg-card p-6 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+  <h2 class="mb-4 flex items-center gap-3 border-b border-border pb-3.5 text-xl font-semibold">
+    <span class:list={["h-3 w-3 shrink-0 rounded-full", colors[color]]}></span>
+    <span>
+      {title}
+      {tagLabel && <Tag color={tagColor}>{tagLabel}</Tag>}
+    </span>
+  </h2>
+  <slot />
+</section>

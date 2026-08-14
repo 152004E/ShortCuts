@@ -1,0 +1,20 @@
+---
+interface Props {
+  type?: "info" | "warn";
+  title?: string;
+}
+
+const { type = "info", title } = Astro.props;
+
+const borderColor = type === "warn" ? "border-red" : "border-yellow";
+
+const defaultTitles: Record<string, string> = {
+  info: "💡 Nota:",
+  warn: "⚠️ Atención:",
+};
+---
+
+<div class:list={["mt-4 rounded-lg border-l-4 border-border bg-card-2 p-3.5 text-sm text-muted", borderColor]}>
+  <b class:list={["text-yellow", "mr-1"]}>{title ?? defaultTitles[type]}</b>
+  <slot />
+</div>

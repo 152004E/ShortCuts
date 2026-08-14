@@ -1,0 +1,148 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Kbd from "../components/Kbd.astro";
+import Note from "../components/Note.astro";
+import CodeBlock from "../components/CodeBlock.astro";
+import openCodeScript from "../data/open-code.sh?raw";
+---
+
+<Base
+  title="⌨️ Script Meta+C — Abrir VS Code"
+  subtitle="Cómo está montado y por qué funciona · Documentación personal"
+  page="open-code"
+>
+  <!-- SECCIÓN 1 -->
+  <Section title="Qué hace" color="accent">
+    <p>
+      Con <Kbd>Meta + C</Kbd> se abre <b class="text-text">Visual Studio Code</b>.
+      La parte interesante: si tienes <b class="text-text">Dolphin (gestor de archivos) enfocado</b>, VS Code se abre
+      directamente con la carpeta que estás viendo como proyecto. Si no hay Dolphin enfocado, abre
+      VS Code normal (sin argumentos).
+    </p>
+    <Note title="💡 Truco del que depende:">
+      Dolphin debe tener activada la opción
+      <b class="text-text">"Mostrar la ruta completa en la barra de título"</b> (<code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">ShowFullPathInTitlebar=true</code>).
+      Así el título de la ventana de Dolphin <i>es</i> la ruta de la carpeta, y el script solo tiene que leerla.
+    </Note>
+  </Section>
+
+  <!-- SECCIÓN 2 -->
+  <Section title="Archivos que intervienen" color="green">
+    <ol class="ml-5 list-decimal space-y-1.5">
+      <li>
+        <b class="text-text">El script</b> (el corazón de todo):
+        <span class="path">~/.local/bin/open-code</span>
+      </li>
+      <li>
+        <b class="text-text">El lanzador .desktop</b> (para que KDE lo vea como aplicación y le puedas dar atajo):
+        <span class="path">~/.local/share/applications/net.local.open-code.desktop</span>
+      </li>
+      <li>
+        <b class="text-text">El atajo global</b> (la línea que ata <Kbd>Meta + C</Kbd> al lanzador):
+        <span class="path">~/.config/kglobalshortcutsrc</span>
+        → sección <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">[services][net.local.open-code.desktop]</code> → <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">_launch=Meta+C</code>
+      </li>
+    </ol>
+  </Section>
+
+  <!-- SECCIÓN 3 -->
+  <Section title="Cómo se hace paso a paso" color="purple">
+    <ol class="ml-5 list-decimal space-y-1.5">
+      <li><b class="text-text">Crear el script</b> con el contenido de abajo y darle permisos de ejecución:
+        <CodeBlock code={`mkdir -p ~/.local/bin
+nano ~/.local/bin/open-code
+chmod +x ~/.local/bin/open-code`} />
+      </li>
+      <li><b class="text-text">Activar la ruta completa en Dolphin</b> (una sola vez):
+        <CodeBlock code={`kwriteconfig6 --file dolphinrc --group General --key ShowFullPathInTitlebar true`} />
+        O desde la GUI: <i>Preferencias → Configurar Dolphin → General → "Mostrar la ruta completa en la barra de título"</i>.
+      </li>
+      <li><b class="text-text">Crear el lanzador .desktop</b> con el contenido de abajo.
+      </li>
+      <li><b class="text-text">Asignar el atajo</b> (la parte que hace que <Kbd>Meta + C</Kbd> funcione).
+        <br />Desde la GUI: <i>Configuración del sistema → Atajos → Atajos globales</i>, busca la app
+        <b class="text-text">VsCode</b> y ponle <Kbd>Meta + C</Kbd>.
+        <br />O por línea de comandos:
+        <CodeBlock code={`kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.open-code.desktop" --key "_launch" "Meta+C"`} />
+      </li>
+      <li><b class="text-text">Reiniciar la sesión o recargar atajos</b> para que los cambios surtan efecto:
+        <CodeBlock code={`kquitapp6 kglobalaccel && kstart kglobalaccel`} />
+      </li>
+    </ol>
+  </Section>
+
+  <!-- SECCIÓN 4 -->
+  <Section title="El código del script (open-code)" color="yellow">
+    <p>Guardado en <span class="path">~/.local/bin/open-code</span>:</p>
+    <CodeBlock code={openCodeScript} />
+  </Section>
+
+  <!-- SECCIÓN 5 -->
+  <Section title="El lanzador .desktop" color="green">
+    <p>Guardado en <span class="path">~/.local/share/applications/net.local.open-code.desktop</span>:</p>
+    <CodeBlock
+      code={`[Desktop Entry]
+Exec=/home/emerson/.local/bin/open-code
+Name=VsCode
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true`}
+    />
+    <Note title="💡 Nota:">
+      <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">X-KDE-GlobalAccel-CommandShortcut=true</code> le dice a KDE que esta app
+      <i>soporta</i> un atajo global. <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">NoDisplay=true</code> hace que no aparezca en el menú de inicio,
+      solo en la lista de aplicaciones con atajo global.
+    </Note>
+  </Section>
+
+  <!-- SECCIÓN 6 -->
+  <Section title="Por qué funciona así" color="red">
+    <ul class="ml-5 list-disc space-y-1.5">
+      <li>KDE guarda todos los atajos globales en <span class="path">~/.config/kglobalshortcutsrc</span>.
+        El formato de cada línea es <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">acción=activo,por_defecto,nombre</code>.</li>
+      <li>La línea clave que ata todo es:
+        <CodeBlock code={`[services][net.local.open-code.desktop]
+_launch=Meta+C`} />
+      </li>
+      <li><Kbd>Meta + C</Kbd> ejecuta el <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">Exec</code> del .desktop, que invoca
+        <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">open-code</code>, que a su vez consulta D-Bus para saber si Dolphin está enfocado
+        y lee la ruta desde el título de la ventana.</li>
+      <li>Es un atajo de <b class="text-text">"Servicio de aplicación"</b> (services) y no de "Atajos personalizados"
+        (khotkeys), por eso se configura con <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">_launch</code>.</li>
+    </ul>
+  </Section>
+
+  <!-- SECCIÓN 7 -->
+  <Section title="Solución de problemas" color="yellow">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="text-left text-xs uppercase tracking-wider text-muted">
+          <th class="border-b border-border/60 px-3 py-2.5">Síntoma</th>
+          <th class="border-b border-border/60 px-3 py-2.5">Por qué / qué revisar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold"><Kbd>Meta + C</Kbd> no hace nada</td>
+          <td class="px-3 py-2.5 text-sm text-muted">La tecla Meta puede estar desactivada por firmware (Fn+Meta). O el atajo global
+          se perdió: revisa la línea <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">_launch=Meta+C</code> en kglobalshortcutsrc.</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Abre VS Code pero sin el proyecto</td>
+          <td class="px-3 py-2.5 text-sm text-muted">Dolphin no está enfocado, o falta <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">ShowFullPathInTitlebar=true</code> en
+          dolphinrc. Verifícalo con <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">kwriteconfig6 --file dolphinrc --group General --key ShowFullPathInTitlebar</code>.</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">El título de Dolphin no es la ruta</td>
+          <td class="px-3 py-2.5 text-sm text-muted">Reinicia Dolphin tras cambiar la opción de la barra de título (o cierra y abre todas sus ventanas).</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">qdbus6 no existe</td>
+          <td class="px-3 py-2.5 text-sm text-muted">Instala <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">qt6-tools</code>: <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">sudo pacman -S qt6-tools</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </Section>
+</Base>

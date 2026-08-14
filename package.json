@@ -1,0 +1,21 @@
+{
+  "name": "myshortcuts",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Guía personal de atajos de teclado y configuración de escritorio para Linux",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.2",
+    "tailwindcss": "^4.3.3"
+  },
+  "engines": {
+    "node": ">=20.19.0 <25"
+  }
+}

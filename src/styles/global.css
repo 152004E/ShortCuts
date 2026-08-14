@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0f1420;
+  --color-card: #161d2e;
+  --color-card-2: #1b2338;
+  --color-border: #26314d;
+  --color-text: #e6ebf5;
+  --color-muted: #8b97b3;
+  --color-accent: #4cc2ff;
+  --color-accent-2: #7c5cff;
+  --color-green: #35e08a;
+  --color-yellow: #ffd166;
+  --color-red: #ff5f6d;
+  --color-purple: #c792ea;
+  --color-key-bg: #222c45;
+  --color-code-bg: #0c101c;
+
+  --font-sans: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 80% -10%, rgba(124, 92, 255, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 10% 0%, rgba(76, 194, 255, 0.14), transparent 60%);
+  }
+
+  ::selection {
+    background: rgba(76, 194, 255, 0.25);
+  }
+}
+
+@layer utilities {
+  .kbd {
+    @apply inline-block min-w-6 text-center px-2 py-0.5 mx-0.5 font-mono text-sm text-text rounded-md whitespace-nowrap;
+    background: linear-gradient(180deg, #2a3654, var(--color-key-bg));
+    border: 1px solid #3a4a6e;
+    border-bottom-width: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .tag {
+    @apply inline-block text-xs px-2.5 py-0.5 rounded-full ml-1.5 align-middle;
+  }
+
+  .code-block {
+    @apply my-3 overflow-x-auto rounded-lg border border-border bg-code-bg p-4 font-mono text-sm leading-relaxed text-[#c8d3ee];
+  }
+
+  .path {
+    @apply inline-block my-1.5 px-3.5 py-2.5 font-mono text-sm text-green rounded-lg border border-dashed border-green/30 bg-green/10;
+  }
+}
+
+/* Soporte de sintaxis ASCII dentro de los bloques code del html portado */
+pre code {
+  font-family: inherit;
+}
+
+/* Tipografía para páginas Markdown (.md) */
+.prose-md {
+  @apply space-y-4;
+}
+.prose-md h1 {
+  @apply mb-6 bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-3xl font-bold text-transparent;
+}
+.prose-md h2 {
+  @apply mt-8 mb-3 flex items-center gap-3 border-b border-border pb-3 text-xl font-semibold text-accent;
+}
+.prose-md h3 {
+  @apply mt-6 mb-2 text-lg font-semibold text-accent;
+}
+.prose-md h4 {
+  @apply mt-5 font-semibold text-text;
+}
+.prose-md p {
+  @apply text-muted leading-relaxed;
+}
+.prose-md li {
+  @apply mb-1.5 text-muted;
+}
+.prose-md ul,
+.prose-md ol {
+  @apply ml-5 space-y-1;
+}
+.prose-md ul {
+  @apply list-disc;
+}
+.prose-md ol {
+  @apply list-decimal;
+}
+.prose-md a {
+  @apply text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent;
+}
+.prose-md strong {
+  @apply font-semibold text-text;
+}
+.prose-md code {
+  @apply rounded bg-accent/10 px-1.5 py-0.5 font-mono text-[0.85em] text-accent;
+}
+.prose-md blockquote {
+  @apply my-4 rounded-r-lg border-l-4 border-accent bg-card-2 px-4 py-3 text-muted;
+}
+.prose-md blockquote p {
+  @apply mb-1 text-muted;
+}
+.prose-md table {
+  @apply my-4 w-full border-collapse;
+}
+.prose-md th,
+.prose-md td {
+  @apply border-b border-border/60 px-3 py-2 text-left;
+}
+.prose-md th {
+  @apply text-xs uppercase tracking-wider text-muted;
+}
+.prose-md td {
+  @apply text-sm text-muted;
+}
+.prose-md tr:last-child td {
+  @apply border-b-0;
+}
+.prose-md hr {
+  @apply my-6 border-border;
+}
+.prose-md .prose h1:first-child {
+  @apply mt-0;
+}

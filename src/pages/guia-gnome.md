@@ -1,3 +1,11 @@
+---
+layout: "../layouts/Base.astro"
+title: "Configuración de escritorios virtuales en Ubuntu/GNOME"
+subtitle: "Guía de escritorios virtuales · Ubuntu/GNOME"
+page: "guia-gnome"
+prose: true
+---
+
 # Configuración de escritorios virtuales en Ubuntu/GNOME
 
 ## 🖥️ Escritorios virtuales

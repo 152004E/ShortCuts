@@ -1,0 +1,17 @@
+---
+interface Props {
+  color?: "kde" | "app" | "term" | "warn";
+}
+
+const { color = "kde" } = Astro.props;
+const children = await Astro.slots.render("default");
+
+const styles: Record<string, string> = {
+  kde: "bg-accent/15 text-accent",
+  app: "bg-accent-2/15 text-accent-2",
+  term: "bg-green/15 text-green",
+  warn: "bg-red/15 text-red",
+};
+---
+
+<span class:list={["tag", styles[color]]}>{children}</span>
