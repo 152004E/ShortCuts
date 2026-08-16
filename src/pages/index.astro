@@ -225,7 +225,7 @@ import Tag from "../components/Tag.astro";
 </Base>
 
 <script>
-  const input = document.getElementById("buscar");
+  const input = document.getElementById("buscar") as HTMLInputElement | null;
   const sections = document.querySelectorAll("section");
 
   input?.addEventListener("input", () => {
