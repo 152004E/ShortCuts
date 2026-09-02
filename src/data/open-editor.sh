@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 #
-# open-code — abre Visual Studio Code con la carpeta activa de Dolphin
+# open-editor — abre el editor especificado con la carpeta activa de Dolphin
 #
-# Vincula este script a Super + C en:
-#   KDE System Settings → Shortcuts → Custom Shortcuts
-#   Trigger: Meta + C
-#   Action:  /home/emerson/.local/bin/open-code
+# Ejemplos de uso en archivos .desktop:
+#   Exec=/home/SenaFactory/.local/bin/open-editor code
+#   Exec=/home/SenaFactory/.local/bin/open-editor antigravity
 #
 # Comportamiento:
-#   - Dolphin enfocado → code "/ruta/de/la/carpeta"
-#   - Otra aplicación   → code (sin argumentos)
+#   - Dolphin enfocado → editor "/ruta/de/la/carpeta"
+#   - Otra aplicación   → editor (sin argumentos)
 #
 # Requisito único (una sola vez):
 #   Activar "ShowFullPathInTitlebar=true" en Dolphin para que el título
@@ -22,16 +21,19 @@
 #   "Mostrar la ruta completa en la barra de título"
 #
 # Dependencias:
-#   - qdbus6 (qt6-tools, ya instalado en Plasma 6)
+#   - qdbus6 / qdbus-qt6 (qt6-tools)
 #
 #=============================================================================
 # Funciones
 #=============================================================================
 
+QDBUS=$(command -v qdbus6 2>/dev/null || command -v qdbus-qt6 2>/dev/null || command -v qdbus 2>/dev/null)
+
 # Descubre dinámicamente los objetos D-Bus de Dolphin bajo un servicio.
 discover_dolphin_views() {
     local service="$1"
-    qdbus6 "$service" 2>/dev/null \
+    [ -z "$QDBUS" ] && return 1
+    "$QDBUS" "$service" 2>/dev/null \
         | grep -E "^/dolphin/Dolphin_[0-9]+$"
 }
 
@@ -39,6 +41,7 @@ discover_dolphin_views() {
 find_active_dolphin() {
     DOLPHIN_SERVICE=""
     DOLPHIN_VIEW=""
+    [ -z "$QDBUS" ] && return 1
 
     local svc view active
     while IFS= read -r svc; do
@@ -47,7 +50,7 @@ find_active_dolphin() {
         [ -z "$svc" ] && continue
 
         for view in $(discover_dolphin_views "$svc"); do
-            active=$(qdbus6 "$svc" "$view" \
+            active=$("$QDBUS" "$svc" "$view" \
                 org.kde.dolphin.MainWindow.isActiveWindow 2>/dev/null)
             if [ "$active" = "true" ]; then
                 DOLPHIN_SERVICE="$svc"
@@ -55,7 +58,7 @@ find_active_dolphin() {
                 return 0
             fi
         done
-    done < <(qdbus6 | grep "org.kde.dolphin-")
+    done < <("$QDBUS" | grep "org.kde.dolphin-")
 
     return 1
 }
@@ -64,9 +67,10 @@ find_active_dolphin() {
 get_dolphin_path() {
     local service="$1"
     local view="$2"
+    [ -z "$QDBUS" ] && return 1
 
     local title
-    title=$(qdbus6 "$service" "$view" \
+    title=$("$QDBUS" "$service" "$view" \
         org.qtproject.Qt.QWidget.windowTitle 2>/dev/null)
 
     if [[ "$title" == /* ]] && [ -d "$title" ]; then
@@ -77,20 +81,18 @@ get_dolphin_path() {
     return 1
 }
 
-# Abre VS Code. Si recibe una ruta válida, la abre como proyecto.
-open_vscode() {
-    if [ -n "$1" ]; then
-        exec code "$1"
-    else
-        exec code
-    fi
-}
-
 #=============================================================================
 # Ejecución principal
 #=============================================================================
 
 main() {
+    local editor="$1"
+    
+    if [ -z "$editor" ]; then
+        echo "Uso: $0 <comando-del-editor>"
+        exit 1
+    fi
+    
     local folder=""
 
     # 1. Detectar si Dolphin está enfocado y cuál es la ventana activa
@@ -101,8 +103,12 @@ main() {
         folder=$(get_dolphin_path "$DOLPHIN_SERVICE" "$DOLPHIN_VIEW")
     fi
 
-    # 3. Abrir VS Code con la ruta obtenida, o sin argumentos si no hay ruta
-    open_vscode "$folder"
+    # 3. Abrir el editor con la ruta obtenida, o sin argumentos si no hay ruta
+    if [ -n "$folder" ]; then
+        exec "$editor" "$folder"
+    else
+        exec "$editor"
+    fi
 }
 
 # Solo ejecutar cuando el script se invoca directamente (no al hacer source)

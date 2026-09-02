@@ -4,21 +4,21 @@ import Section from "../components/Section.astro";
 import Kbd from "../components/Kbd.astro";
 import Note from "../components/Note.astro";
 import CodeBlock from "../components/CodeBlock.astro";
-import openCodeScript from "../data/open-code.sh?raw";
+import openEditorScript from "../data/open-editor.sh?raw";
 ---
 
 <Base
-  title="⌨️ Script Meta+C — Abrir VS Code"
+  title="⌨️ Script Meta+C / Meta+A — Abrir Editores"
   subtitle="Cómo está montado y por qué funciona · Documentación personal"
-  page="open-code"
+  page="open-editor"
 >
   <!-- SECCIÓN 1 -->
   <Section title="Qué hace" color="accent">
     <p>
-      Con <Kbd>Meta + C</Kbd> se abre <b class="text-text">Visual Studio Code</b>.
-      La parte interesante: si tienes <b class="text-text">Dolphin (gestor de archivos) enfocado</b>, VS Code se abre
+      Con <Kbd>Meta + C</Kbd> abres <b class="text-text">Visual Studio Code</b> y con <Kbd>Meta + A</Kbd> abres <b class="text-text">Antigravity IDE</b>.
+      La parte interesante: si tienes <b class="text-text">Dolphin (gestor de archivos) enfocado</b>, el editor se abre
       directamente con la carpeta que estás viendo como proyecto. Si no hay Dolphin enfocado, abre
-      VS Code normal (sin argumentos).
+      el editor de forma normal (sin argumentos).
     </p>
     <Note title="💡 Truco del que depende:">
       Dolphin debe tener activada la opción
@@ -32,16 +32,17 @@ import openCodeScript from "../data/open-code.sh?raw";
     <ol class="ml-5 list-decimal space-y-1.5">
       <li>
         <b class="text-text">El script</b> (el corazón de todo):
-        <span class="path">~/.local/bin/open-code</span>
+        <span class="path">~/.local/bin/open-editor</span>
       </li>
       <li>
-        <b class="text-text">El lanzador .desktop</b> (para que KDE lo vea como aplicación y le puedas dar atajo):
+        <b class="text-text">Los lanzadores .desktop</b> (para que KDE los vea como aplicación y les puedas dar atajo):
         <span class="path">~/.local/share/applications/net.local.open-code.desktop</span>
+        <br />
+        <span class="path">~/.local/share/applications/net.local.open-antigravity.desktop</span>
       </li>
       <li>
-        <b class="text-text">El atajo global</b> (la línea que ata <Kbd>Meta + C</Kbd> al lanzador):
+        <b class="text-text">Los atajos globales</b> (las líneas que atan los atajos a los lanzadores):
         <span class="path">~/.config/kglobalshortcutsrc</span>
-        → sección <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">[services][net.local.open-code.desktop]</code> → <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">_launch=Meta+C</code>
       </li>
     </ol>
   </Section>
@@ -49,22 +50,23 @@ import openCodeScript from "../data/open-code.sh?raw";
   <!-- SECCIÓN 3 -->
   <Section title="Cómo se hace paso a paso" color="purple">
     <ol class="ml-5 list-decimal space-y-1.5">
-      <li><b class="text-text">Crear el script</b> con el contenido de abajo y darle permisos de ejecución:
+      <li><b class="text-text">Crear el script genérico</b> con el contenido de abajo y darle permisos de ejecución:
         <CodeBlock code={`mkdir -p ~/.local/bin
-nano ~/.local/bin/open-code
-chmod +x ~/.local/bin/open-code`} />
+nano ~/.local/bin/open-editor
+chmod +x ~/.local/bin/open-editor`} />
       </li>
       <li><b class="text-text">Activar la ruta completa en Dolphin</b> (una sola vez):
         <CodeBlock code={`kwriteconfig6 --file dolphinrc --group General --key ShowFullPathInTitlebar true`} />
         O desde la GUI: <i>Preferencias → Configurar Dolphin → General → "Mostrar la ruta completa en la barra de título"</i>.
       </li>
-      <li><b class="text-text">Crear el lanzador .desktop</b> con el contenido de abajo.
+      <li><b class="text-text">Crear los lanzadores .desktop</b> (mira la sección más abajo).
       </li>
-      <li><b class="text-text">Asignar el atajo</b> (la parte que hace que <Kbd>Meta + C</Kbd> funcione).
-        <br />Desde la GUI: <i>Configuración del sistema → Atajos → Atajos globales</i>, busca la app
-        <b class="text-text">VsCode</b> y ponle <Kbd>Meta + C</Kbd>.
+      <li><b class="text-text">Asignar los atajos</b> (la parte que hace que funcionen).
+        <br />Desde la GUI: <i>Configuración del sistema → Atajos → Atajos globales</i>, busca
+        <b class="text-text">VsCode</b> y <b class="text-text">Antigravity IDE</b> y ponles sus atajos.
         <br />O por línea de comandos:
-        <CodeBlock code={`kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.open-code.desktop" --key "_launch" "Meta+C"`} />
+        <CodeBlock code={`kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.open-code.desktop" --key "_launch" "Meta+C"
+kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.open-antigravity.desktop" --key "_launch" "Meta+A"`} />
       </li>
       <li><b class="text-text">Reiniciar la sesión o recargar atajos</b> para que los cambios surtan efecto:
         <CodeBlock code={`kquitapp6 kglobalaccel && kstart kglobalaccel`} />
@@ -73,18 +75,28 @@ chmod +x ~/.local/bin/open-code`} />
   </Section>
 
   <!-- SECCIÓN 4 -->
-  <Section title="El código del script (open-code)" color="yellow">
-    <p>Guardado en <span class="path">~/.local/bin/open-code</span>:</p>
-    <CodeBlock code={openCodeScript} />
+  <Section title="El código del script (open-editor)" color="yellow">
+    <p>Guardado en <span class="path">~/.local/bin/open-editor</span>:</p>
+    <CodeBlock code={openEditorScript} />
   </Section>
 
   <!-- SECCIÓN 5 -->
-  <Section title="El lanzador .desktop" color="green">
+  <Section title="Los lanzadores .desktop" color="green">
     <p>Guardado en <span class="path">~/.local/share/applications/net.local.open-code.desktop</span>:</p>
     <CodeBlock
       code={`[Desktop Entry]
-Exec=/home/emerson/.local/bin/open-code
+Exec=/home/SenaFactory/.local/bin/open-editor code
 Name=VsCode
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true`}
+    />
+    <p class="mt-4">Guardado en <span class="path">~/.local/share/applications/net.local.open-antigravity.desktop</span>:</p>
+    <CodeBlock
+      code={`[Desktop Entry]
+Exec=/home/SenaFactory/.local/bin/open-editor antigravity
+Name=Antigravity IDE
 NoDisplay=true
 StartupNotify=false
 Type=Application
@@ -106,8 +118,8 @@ X-KDE-GlobalAccel-CommandShortcut=true`}
         <CodeBlock code={`[services][net.local.open-code.desktop]
 _launch=Meta+C`} />
       </li>
-      <li><Kbd>Meta + C</Kbd> ejecuta el <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">Exec</code> del .desktop, que invoca
-        <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">open-code</code>, que a su vez consulta D-Bus para saber si Dolphin está enfocado
+      <li>Al presionar el atajo, KDE ejecuta el <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">Exec</code> del .desktop, que invoca
+        <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">open-editor &lt;comando&gt;</code>, que a su vez consulta D-Bus para saber si Dolphin está enfocado
         y lee la ruta desde el título de la ventana.</li>
       <li>Es un atajo de <b class="text-text">"Servicio de aplicación"</b> (services) y no de "Atajos personalizados"
         (khotkeys), por eso se configura con <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">_launch</code>.</li>
@@ -125,12 +137,12 @@ _launch=Meta+C`} />
       </thead>
       <tbody>
         <tr class="border-b border-border/40 last:border-0">
-          <td class="px-3 py-2.5 font-semibold"><Kbd>Meta + C</Kbd> no hace nada</td>
+          <td class="px-3 py-2.5 font-semibold">El atajo no hace nada</td>
           <td class="px-3 py-2.5 text-sm text-muted">La tecla Meta puede estar desactivada por firmware (Fn+Meta). O el atajo global
-          se perdió: revisa la línea <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">_launch=Meta+C</code> en kglobalshortcutsrc.</td>
+          se perdió: revisa las líneas en kglobalshortcutsrc.</td>
         </tr>
         <tr class="border-b border-border/40 last:border-0">
-          <td class="px-3 py-2.5 font-semibold">Abre VS Code pero sin el proyecto</td>
+          <td class="px-3 py-2.5 font-semibold">Abre el editor pero sin el proyecto</td>
           <td class="px-3 py-2.5 text-sm text-muted">Dolphin no está enfocado, o falta <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">ShowFullPathInTitlebar=true</code> en
           dolphinrc. Verifícalo con <code class="rounded bg-accent/10 px-1 py-0.5 font-mono text-xs text-accent">kwriteconfig6 --file dolphinrc --group General --key ShowFullPathInTitlebar</code>.</td>
         </tr>
