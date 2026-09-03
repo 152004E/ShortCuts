@@ -22,9 +22,19 @@ pnpm preview   # sirve dist/ localmente
 | Ruta | Contenido |
 |---|---|
 | `/` | Atajos de teclado KDE Plasma 6 (buscador) |
-| `/open-code/` | Script `Meta+C` — abrir VS Code con la carpeta de Dolphin |
+| `/open-code/` | Script `Meta+C` / `Meta+A` — abrir editores con la carpeta de Dolphin |
 | `/guia-gnome/` | Escritorios virtuales en Ubuntu/GNOME |
 | `/barras-pantallas/` | Plan: barras en 2 pantallas con una tecla (KDE) |
+| `/terminal/` | Terminal profesional: Ghostty + Starship (Node.js, Git, pnpm) |
+
+## Dotfiles y Configuración de Terminal
+
+En la carpeta [`configs/`](./configs/) se respaldan las configuraciones para replicar el entorno de terminal:
+- `configs/ghostty/config`: Configuración de Ghostty (tema Catppuccin Mocha, JetBrainsMono Nerd Font).
+- `configs/starship/starship.toml`: Configuración del prompt Starship (Node, Git, pnpm).
+- `configs/vscode/settings.json`: Configuración de terminal para VS Code y Antigravity.
+- `configs/install.sh`: Script de instalación automatizado (sin requerir `sudo`).
+- Ver guía completa en [`docs/TERMINAL.md`](./docs/TERMINAL.md).
 
 ## Deploy a GitHub Pages
 

@@ -1,0 +1,24 @@
+# Ghostty Terminal Configuration
+# Configuración optimizada con Catppuccin Mocha y JetBrainsMono Nerd Font
+
+# --- Tipografía ---
+font-family = "JetBrainsMono Nerd Font"
+font-size = 11.5
+font-feature = ["liga", "calt"]
+
+# --- Tema y Apariencia ---
+theme = "catppuccin-mocha"
+background-opacity = 0.95
+
+# --- Ventana y Márgenes ---
+window-padding-x = 10
+window-padding-y = 10
+
+# --- Cursor ---
+cursor-style = "bar"
+cursor-style-blink = true
+
+# --- Comportamiento ---
+mouse-hide-while-typing = true
+copy-on-select = true
+shell-integration = "detect"

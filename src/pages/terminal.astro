@@ -1,0 +1,158 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Kbd from "../components/Kbd.astro";
+import Note from "../components/Note.astro";
+import CodeBlock from "../components/CodeBlock.astro";
+import ghosttyConfig from "../../configs/ghostty/config?raw";
+import starshipConfig from "../../configs/starship/starship.toml?raw";
+import vscodeConfig from "../../configs/vscode/settings.json?raw";
+---
+
+<Base
+  title="💻 Terminal Profesional — Ghostty + Starship"
+  subtitle="Configuración moderna con Catppuccin Mocha, JetBrainsMono Nerd Font, Node.js y Git en vivo"
+  page="terminal"
+>
+  <!-- SECCIÓN 1: VISTA PREVIA GRÁFICA DE LA TERMINAL -->
+  <Section title="Vista Previa de la Terminal (Ghostty + Starship)" color="accent">
+    <p class="mb-4 text-sm text-muted">
+      Así se visualiza el prompt en tiempo real dentro de un proyecto con Node.js, TypeScript y Git activo:
+    </p>
+
+    <!-- MOCKUP DE TERMINAL GHOSTTY -->
+    <div class="overflow-hidden rounded-xl border border-[#313244] bg-[#1e1e2e] shadow-2xl font-mono text-sm leading-relaxed">
+      <!-- Header de ventana -->
+      <div class="flex items-center justify-between border-b border-[#313244] bg-[#181825] px-4 py-2.5">
+        <div class="flex items-center gap-2">
+          <span class="h-3 w-3 rounded-full bg-[#f38ba8]"></span>
+          <span class="h-3 w-3 rounded-full bg-[#f9e2af]"></span>
+          <span class="h-3 w-3 rounded-full bg-[#a6e3a1]"></span>
+        </div>
+        <span class="text-xs text-[#a6adc8]">ghostty — ~/Documentos/MyProjects/Doubalance/DuoBalance-app</span>
+        <div class="w-10"></div>
+      </div>
+
+      <!-- Contenido de la consola -->
+      <div class="p-4.5 space-y-2 text-[#cdd6f4]">
+        <div class="text-[#6c7086]"># Entrando al directorio del proyecto y detectando entorno automáticamente...</div>
+        
+        <div>
+          <span class="text-[#89b4fa] font-bold">󰣇 </span>
+          <span class="text-[#89dceb] font-bold">…/Doubalance/DuoBalance-app</span>
+          <span class="text-[#cba6f7] font-bold"> on  main</span>
+          <span class="text-[#f9e2af] font-bold"> [!2 +1]</span>
+          <span class="text-[#a6e3a1] font-bold"> via 󰎙 v22.23.1</span>
+          <span class="text-[#fab387] font-bold"> is 󰏗 v1.0.0</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[#a6e3a1] font-bold">❯</span>
+          <span class="text-[#f5e0dc]">pnpm build</span>
+        </div>
+
+        <div class="pl-4 text-xs text-[#a6adc8] space-y-0.5 border-l-2 border-[#45475a] my-2">
+          <div class="text-[#a6e3a1]">✔ Compilación exitosa en 1.84s</div>
+          <div class="text-[#6c7086]">Exporting web bundle... Done!</div>
+        </div>
+
+        <div class="pt-1">
+          <span class="text-[#89b4fa] font-bold">󰣇 </span>
+          <span class="text-[#89dceb] font-bold">…/Doubalance/DuoBalance-app</span>
+          <span class="text-[#cba6f7] font-bold"> on  main</span>
+          <span class="text-[#f9e2af] font-bold"> took 1.8s</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[#a6e3a1] font-bold">❯</span>
+          <span class="animate-pulse inline-block h-4 w-1.5 bg-[#a6e3a1]"></span>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- SECCIÓN 2: CARACTERÍSTICAS PRINCIPALES -->
+  <Section title="Qué información muestra automáticamente" color="green">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-border bg-card-2 p-4">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="text-lg">󰎙</span>
+          <b class="text-text">Versión de Node.js</b>
+        </div>
+        <p class="text-sm text-muted">
+          Detecta automáticamente si estás en un proyecto con <code class="text-accent font-mono text-xs">package.json</code> o archivos JS/TS y muestra la versión de Node activa (ej. <code class="text-green font-mono text-xs">v22.23.1</code>).
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-border bg-card-2 p-4">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="text-lg"></span>
+          <b class="text-text">Rama y Estado de Git</b>
+        </div>
+        <p class="text-sm text-muted">
+          Indica en qué rama estás (<code class="text-purple font-mono text-xs">main</code>), si tienes cambios sin guardar (<code class="text-yellow font-mono text-xs">!</code>), archivos nuevos (<code class="text-yellow font-mono text-xs">?</code>) o commits adelante/atrás (<code class="text-yellow font-mono text-xs">⇡1</code>).
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-border bg-card-2 p-4">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="text-lg">󰏗</span>
+          <b class="text-text">Versión del Paquete (pnpm)</b>
+        </div>
+        <p class="text-sm text-muted">
+          Lee el archivo de configuración del proyecto y muestra la versión del paquete actual de forma discreta.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-border bg-card-2 p-4">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="text-lg">⏱️</span>
+          <b class="text-text">Duración de Comandos</b>
+        </div>
+        <p class="text-sm text-muted">
+          Si un script, compilación o test toma más de 2 segundos, el prompt te indica exactamente cuánto tiempo tardó (ej. <code class="text-yellow font-mono text-xs">took 3.4s</code>).
+        </p>
+      </div>
+    </div>
+
+    <Note title="💡 Consistencia en Editores:">
+      Al inicializar Starship en <code class="font-mono text-xs text-accent">~/.bashrc</code>, <b>todas las terminales</b> que abras en tu máquina (Ghostty, la terminal integrada de VS Code, la de Antigravity IDE o Konsole) tendrán exactamente el mismo aspecto profesional y las mismas capacidades.
+    </Note>
+  </Section>
+
+  <!-- SECCIÓN 3: INSTALACIÓN RÁPIDA -->
+  <Section title="Cómo replicar toda la configuración en una nueva máquina" color="purple">
+    <p class="mb-3 text-sm text-muted">
+      Este repositorio incluye un script automatizado que instala la fuente, Starship y copia las configuraciones sin requerir permisos de administrador:
+    </p>
+
+    <CodeBlock code={`# 1. Clonar o entrar a tu repositorio ShortCuts:
+cd ~/Documentos/MyProjects/ShortCuts
+
+# 2. Ejecutar el script de instalación automática:
+./configs/install.sh
+
+# 3. Recargar tu terminal:
+source ~/.bashrc`} />
+  </Section>
+
+  <!-- SECCIÓN 4: ARCHIVOS DE CONFIGURACIÓN (DOTFILES) -->
+  <Section title="Configuración de Ghostty (~/.config/ghostty/config)" color="accent">
+    <p class="mb-3 text-sm text-muted">
+      Ubicación en tu sistema: <span class="path">~/.config/ghostty/config</span>. Incluye ligaduras de código, opacidad suave y fuente Nerd Font:
+    </p>
+    <CodeBlock code={ghosttyConfig} />
+  </Section>
+
+  <Section title="Configuración de Starship (~/.config/starship.toml)" color="yellow">
+    <p class="mb-3 text-sm text-muted">
+      Ubicación en tu sistema: <span class="path">~/.config/starship.toml</span>. Define el tema Catppuccin Mocha y los módulos activos:
+    </p>
+    <CodeBlock code={starshipConfig} />
+  </Section>
+
+  <Section title="Configuración en VS Code / Antigravity IDE" color="green">
+    <p class="mb-3 text-sm text-muted">
+      Ubicación en tu sistema: <span class="path">~/.config/Code/User/settings.json</span>. Asocia la fuente Nerd Font para que los iconos no se vean como cajas rotas y define Ghostty como terminal externa:
+    </p>
+    <CodeBlock code={vscodeConfig} />
+  </Section>
+</Base>

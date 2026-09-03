@@ -1,0 +1,88 @@
+# Starship Configuration — Catppuccin Mocha
+# Configuración personalizada de prompt para Ghostty y editores
+
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$package\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Tiempo de espera para comandos
+command_timeout = 1000
+
+# Nueva línea entre comandos
+add_newline = true
+
+# --- Icono de Sistema Operativo ---
+[os]
+disabled = false
+style = "bold #89b4fa"
+symbols.Arch = "󰣇 "
+symbols.Ubuntu = "󰕈 "
+symbols.Linux = "󰌽 "
+
+# --- Directorio ---
+[directory]
+style = "bold #89dceb"
+format = "[$path]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+home_symbol = "󰋜 ~"
+read_only = " 󰌾"
+read_only_style = "bold #f38ba8"
+
+# --- Rama Git ---
+[git_branch]
+symbol = " "
+style = "bold #cba6f7"
+format = "on [$symbol$branch]($style) "
+
+# --- Estado de Git ---
+[git_status]
+style = "bold #f9e2af"
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+conflicted = "󰞇 "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+up_to_date = ""
+untracked = "?${count} "
+stashed = "󰆓 "
+modified = "!${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "✘${count} "
+
+# --- Node.js ---
+[nodejs]
+symbol = "󰎙 "
+style = "bold #a6e3a1"
+format = "via [$symbol($version )]($style)"
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+# --- Package (pnpm / npm) ---
+[package]
+symbol = "󰏗 "
+style = "bold #fab387"
+format = "is [$symbol$version]($style) "
+display_private = true
+
+# --- Duración del comando (si > 2s) ---
+[cmd_duration]
+min_time = 2_000
+style = "bold #f9e2af"
+format = "took [$duration]($style) "
+
+# --- Símbolo del Prompt ---
+[character]
+success_symbol = "[❯](bold #a6e3a1)"
+error_symbol = "[❯](bold #f38ba8)"
+vimcmd_symbol = "[❮](bold #b4befe)"
