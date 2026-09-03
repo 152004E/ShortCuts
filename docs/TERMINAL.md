@@ -61,12 +61,15 @@ El script se encarga de:
 
 ---
 
-## 4. Configuración en Editores (VS Code / Antigravity IDE)
+## 4. Configuración en Editores (VS Code / Antigravity IDE) y Konsole
 
 Para que la terminal integrada de tu editor utilice la misma fuente y reconozca los iconos de Starship:
 
-Abre la configuración de usuario (`Ctrl + Shift + P` ➔ `Preferences: Open User Settings (JSON)`) y añade:
+Abre la configuración de usuario (`Ctrl + Shift + P` ➔ `Preferences: Open User Settings (JSON)`):
+- **VS Code:** `~/.config/Code/User/settings.json`
+- **Antigravity IDE:** `~/.config/Antigravity IDE/User/settings.json`
 
+Añade las siguientes directivas:
 ```json
 {
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', monospace",
@@ -74,6 +77,8 @@ Abre la configuración de usuario (`Ctrl + Shift + P` ➔ `Preferences: Open Use
   "terminal.external.linuxExec": "ghostty"
 }
 ```
+
+> 💡 **En Konsole (KDE):** La configuración se aplica en `~/.local/share/konsole/Default.profile` con `Font=JetBrainsMono Nerd Font,11` y en `~/.config/konsolerc` con `DefaultProfile=Default.profile`.
 
 ---
 
