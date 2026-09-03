@@ -35,6 +35,7 @@ En la carpeta [`configs/`](./configs/) se respaldan las configuraciones para rep
 - `configs/vscode/settings.json`: Configuración de terminal para VS Code y Antigravity.
 - `configs/install.sh`: Script de instalación automatizado (sin requerir `sudo`).
 - Ver guía completa en [`docs/TERMINAL.md`](./docs/TERMINAL.md).
+- Ver registro de personalización y soluciones de KDE Plasma 6 en [`docs/KDE_PERSONALIZACION_PROBLEMAS_SOLUCIONES.md`](./docs/KDE_PERSONALIZACION_PROBLEMAS_SOLUCIONES.md).
 
 ## Deploy a GitHub Pages
 
