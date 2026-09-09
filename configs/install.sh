@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Script de Instalación Rápida: Ghostty + Starship + JetBrainsMono Nerd Font
-# 100% en espacio de usuario (sin necesidad de sudo)
+# 🚀 Instalador Automático de Entorno (Dotfiles)
+#
+# ¿QUÉ HACE ESTE SCRIPT?
+# Prepara tu entorno de trabajo: instala fuentes, configura la terminal Ghostty,
+# y añade los atajos y scripts esenciales del sistema. 
+# Todo se instala de forma segura (no pide contraseñas de administrador/sudo).
+#
+# ¿CÓMO USARLO?
+# Simplemente abre una terminal en esta carpeta y escribe: ./install.sh
 # ==============================================================================
 
 set -e
@@ -34,9 +41,13 @@ else
     echo "✅ Starship ya está instalado."
 fi
 
-echo "⚙️  [4/5] Copiando archivos de configuración (dotfiles)..."
+echo "⚙️  [4/5] Copiando archivos de configuración y scripts..."
 cp -v "$SCRIPT_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 cp -v "$SCRIPT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+
+echo "🛠️  [4.5/5] Instalando scripts globales (open-editor)..."
+cp -v "$SCRIPT_DIR/scripts/open-editor.sh" "$HOME/.local/bin/open-editor"
+chmod +x "$HOME/.local/bin/open-editor"
 
 echo "🐚 [5/5] Configurando ~/.bashrc..."
 if ! grep -q 'starship init bash' "$HOME/.bashrc"; then

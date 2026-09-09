@@ -1,47 +1,53 @@
-# MyShortcuts
+# 💻 MySetup (SenaFactory Dotfiles)
 
-Guía personal de atajos de teclado y configuración de escritorio para Linux.
+Bienvenido a mi entorno personal de desarrollo en Linux. 
 
-## Stack
+Este repositorio contiene la arquitectura completa de mi sistema operativo (**Fedora Linux 44 - KDE Plasma**), incluyendo mis aplicaciones de uso diario, atajos de teclado personalizados, automatizaciones y configuraciones de terminal para desarrollo frontend.
 
-- [Astro](https://astro.build) 7.x (estático, ideal para GitHub Pages)
-- [Tailwind CSS](https://tailwindcss.com) 4.x (`@tailwindcss/vite`)
-- Node.js 24 (LTS)
+---
 
-## Desarrollo
+## 🚀 ¿Qué es esto?
+En el mundo del desarrollo, a este tipo de repositorios se les llama **Dotfiles**. Sirven para que, si algún día formateas tu computadora o compras una nueva, puedas clonar este repositorio y recuperar todo tu entorno de trabajo (colores, fuentes, atajos, programas) en cuestión de segundos, sin tener que configurarlo a mano.
 
-```bash
-pnpm install   # primera vez
-pnpm dev       # servidor local con hot-reload
-pnpm build     # genera el sitio estático en dist/
-pnpm preview   # sirve dist/ localmente
-```
+## 📂 Estructura del Proyecto
 
-## Páginas
+El repositorio está dividido en dos grandes secciones para mantenerlo ordenado:
 
-| Ruta | Contenido |
-|---|---|
-| `/` | Atajos de teclado KDE Plasma 6 (buscador) |
-| `/open-code/` | Script `Meta+C` / `Meta+A` — abrir editores con la carpeta de Dolphin |
-| `/guia-gnome/` | Escritorios virtuales en Ubuntu/GNOME |
-| `/barras-pantallas/` | Plan: barras en 2 pantallas con una tecla (KDE) |
-| `/terminal/` | Terminal profesional: Ghostty + Starship (Node.js, Git, pnpm) |
+### 1. `configs/` (El Motor)
+Aquí viven todos los scripts automatizados y las configuraciones exportadas del sistema.
+- **Instalador Automático (`install.sh`)**: Script maestro que instala y vincula todo.
+- **KDE Plasma**: Respaldo maestro de atajos globales de escritorio (`.kksrc`).
+- **Scripts Nativos**: Trucos lógicos de Bash (ej. integración con Dolphin vía D-Bus para abrir editores).
+- **Entorno de Terminal**: Temas y ajustes para **Ghostty**, **Starship** y **Bash**.
+- *(Puedes leer `configs/README.md` para una explicación paso a paso de cada carpeta)*.
 
-## Dotfiles y Configuración de Terminal
+### 2. `docs/` (La Base de Conocimiento)
+Toda mi documentación técnica, trucos y tutoriales extraídos en formato Markdown puro:
+- **`apps/`**: Inventario del software y comandos de instalación (Brave, VLC, Node, pnpm).
+- **`desktop/`**: Guías de GNOME, KDE, barras de tareas y mis atajos de teclado.
+- **`ides/`**: Integración profunda con VS Code, JetBrains y Antigravity.
+- **`terminal/`**: Guía extensa sobre el funcionamiento de Ghostty.
 
-En la carpeta [`configs/`](./configs/) se respaldan las configuraciones para replicar el entorno de terminal:
-- `configs/ghostty/config`: Configuración de Ghostty (tema Catppuccin Mocha, JetBrainsMono Nerd Font).
-- `configs/starship/starship.toml`: Configuración del prompt Starship (Node, Git, pnpm).
-- `configs/vscode/settings.json`: Configuración de terminal para VS Code y Antigravity.
-- `configs/install.sh`: Script de instalación automatizado (sin requerir `sudo`).
-- Ver guía completa en [`docs/TERMINAL.md`](./docs/TERMINAL.md).
-- Ver registro de personalización y soluciones de KDE Plasma 6 en [`docs/KDE_PERSONALIZACION_PROBLEMAS_SOLUCIONES.md`](./docs/KDE_PERSONALIZACION_PROBLEMAS_SOLUCIONES.md).
+## ⚙️ Instalación en una PC Nueva
 
-## Deploy a GitHub Pages
+Si estás en un sistema limpio (preferiblemente basado en Fedora/Arch con KDE), sigue estos pasos:
 
-El workflow `.github/workflows/deploy.yml` compila y publica en GitHub Pages en cada push a `main`. La configuración `site`/`base` en `astro.config.mjs` apunta al repositorio GitHub Pages correspondiente — ajústalos si cambias de repo.
+1. **Clona este repositorio:**
+   ```bash
+   git clone https://github.com/SenaFactory/MySetup.git
+   cd MySetup
+   ```
 
-## Extras
+2. **Ejecuta el instalador mágico:**
+   ```bash
+   cd configs
+   ./install.sh
+   ```
+   *(El script instalará las fuentes Nerd Fonts, configurará Ghostty, Starship, Bash, y creará los comandos globales para editores en `~/.local/bin/`).*
 
-- El buscador de la portada es JS vanilla en `src/pages/index.astro`.
-- El tema oscuro vive en `src/styles/global.css` mediante tokens de Tailwind 4 (`@theme`).
+3. **Importa tus atajos de teclado:**
+   - Ve a los ajustes de sistema de KDE.
+   - En la sección de Atajos Globales, importa el archivo `configs/kde/MIsShortCuts.kksrc`.
+
+## 📜 Reglas del Repositorio (Agentes de IA)
+Este repositorio está diseñado para ser operado en compañía de asistentes de código avanzados. El archivo `AGENTS.md` incluye el marco normativo (uso estricto de `pnpm`, protecciones de sistema y comandos seguros) que los agentes deben respetar al interactuar con esta máquina.
