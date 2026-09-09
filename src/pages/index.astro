@@ -94,16 +94,16 @@ import Tag from "../components/Tag.astro";
         </tr>
         <tr class="border-b border-border/40 last:border-0">
           <td class="px-3 py-2.5 font-semibold">Restaurar ventana</td>
-          <td class="px-3 py-2.5"><Kbd>Meta + PgDn</Kbd> <i class="text-muted">(otra vez)</i></td>
-          <td class="px-3 py-2.5 text-sm text-muted">Devuelve el tamaño anterior</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + Retroceso</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Restaura una ventana minimizada</td>
         </tr>
         <tr class="border-b border-border/40 last:border-0">
           <td class="px-3 py-2.5 font-semibold">Cerrar ventana</td>
           <td class="px-3 py-2.5">
-            <Kbd>Meta + F</Kbd> <Tag color="term">nuevo</Tag> · <Kbd>Alt + F4</Kbd>
+            <Kbd>Meta + W</Kbd> · <Kbd>Alt + F4</Kbd>
           </td>
           <td class="px-3 py-2.5 text-sm text-muted">
-            Cierra la ventana activa. <b class="text-text">Meta+F</b> se añadió como 2º atajo: evita la capa <i>Fn</i> del 60% (F está en <Kbd>Fn + 4</Kbd>) y el alt de <Kbd>Meta + Q</Kbd>/<Kbd>W</Kbd> ya estaba ocupado por Actividades/Overview
+            Cierra la ventana activa.
           </td>
         </tr>
         <tr class="border-b border-border/40 last:border-0">
@@ -140,6 +140,11 @@ import Tag from "../components/Tag.astro";
           <td class="px-3 py-2.5 font-semibold">Cambiar escritorio virtual</td>
           <td class="px-3 py-2.5"><Kbd>Ctrl + F1-F4</Kbd></td>
           <td class="px-3 py-2.5 text-sm text-muted">Navega entre escritorios virtuales</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Vista general (Overview)</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + F</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Muestra todas las ventanas abiertas y escritorios virtuales</td>
         </tr>
       </tbody>
     </table>
@@ -211,6 +216,16 @@ import Tag from "../components/Tag.astro";
           <td class="px-3 py-2.5 font-semibold">Cambiar idioma teclado</td>
           <td class="px-3 py-2.5"><Kbd>Meta + Alt + K</Kbd></td>
           <td class="px-3 py-2.5 text-sm text-muted">Alterna entre distribuciones de teclado (en tu config es Meta+Alt+K)</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Historial del portapapeles</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + V</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Muestra el historial de elementos copiados</td>
+        </tr>
+        <tr class="border-b border-border/40 last:border-0">
+          <td class="px-3 py-2.5 font-semibold">Selector de Emojis</td>
+          <td class="px-3 py-2.5"><Kbd>Meta + .</Kbd></td>
+          <td class="px-3 py-2.5 text-sm text-muted">Abre el selector nativo de emojis de Plasma</td>
         </tr>
       </tbody>
     </table>

@@ -52,12 +52,12 @@ Nota importante del usuario: `Super` ya enseña las barras pero **también el Ov
 |---|---|
 | `Alt+F4` | Cerrar ventana (default KWin) |
 | `Meta+Q` | **Actividades** (`manage activities` → switcher de escritorios) ← por eso "abre los escritorios" |
-| `Meta+W` | **Overview / cuadrícula de escritorios** |
+| `Meta+W` | **Cerrar ventana** (2º atajo) |
 | `Meta+D` | Mostrar escritorio |
 | `Meta+B` | Perfil de energía |
 | `Ctrl+Esc` | **Libre** ← candidata elegida para mantener=m/liviano |
 | `Ctrl+Alt+H`, `Ctrl+Shift+Esc`, `Ctrl+Alt+U`, `Ctrl+Alt+Y`, `Ctrl+Alt+G` | **Libres** (alternativas) |
-| `Meta+F` | **Libre** → ya se asignó a **Cerrar ventana** (2º atajo) |
+| `Meta+F` | **Overview / cuadrícula de escritorios** |
 
 ---
 

@@ -2,8 +2,12 @@
 switch-to-activity-d0f7edf9-1dcd-476a-889a-00bf82152161=
 
 [Custom Commands][net.local.open-code.desktop]
-Exec=/home/emerson/.local/bin/open-code
+Exec=/home/SenaFactory/.local/bin/open-editor code
 Name=VsCode
+
+[Custom Commands][net.local.open-antigravity.desktop]
+Exec=/home/SenaFactory/.local/bin/open-editor antigravity
+Name=Antigravity IDE
 
 [KDE Keyboard Layout Switcher][Global Shortcuts]
 Switch keyboard layout to English (UK)=
@@ -334,6 +338,9 @@ seekbackwardmedialong=
 seekforwardmedia=Media Fast Forward
 seekforwardmedialong=
 stopmedia=Media Stop
+
+[net.local.open-antigravity.desktop][Global Shortcuts]
+_launch=Meta+A
 
 [net.local.open-code.desktop][Global Shortcuts]
 _launch=Meta+C
