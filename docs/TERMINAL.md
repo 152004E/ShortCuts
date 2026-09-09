@@ -74,7 +74,8 @@ Añade las siguientes directivas:
 {
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', monospace",
   "terminal.integrated.fontSize": 12,
-  "terminal.external.linuxExec": "ghostty"
+  "terminal.external.linuxExec": "ghostty",
+  "terminal.integrated.copyOnSelection": true
 }
 ```
 
