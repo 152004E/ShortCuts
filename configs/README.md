@@ -4,6 +4,8 @@
 
 Aquí guardamos todos los "planos" y ajustes para que tu computadora, tu terminal y tus editores de código funcionen y se vean exactamente como a ti te gusta, sin tener que configurarlos a mano uno por uno.
 
+> 💡 **Nota de Compatibilidad:** Estas configuraciones están diseñadas para ser **universales**. Puedes clonar este repositorio y usarlo en **cualquier computadora con Linux y KDE Plasma** para replicar tu entorno de trabajo al instante.
+
 ## 🚀 ¿Cómo se usa todo esto?
 ¡Es automático! No tienes que copiar los archivos uno por uno. 
 Solo debes abrir tu terminal y ejecutar el instalador maestro que está aquí mismo:

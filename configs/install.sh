@@ -45,6 +45,12 @@ echo "⚙️  [4/5] Copiando archivos de configuración y scripts..."
 cp -v "$SCRIPT_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 cp -v "$SCRIPT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 
+echo "📝 [4.1/5] Copiando configuración de VS Code y Antigravity..."
+mkdir -p "$HOME/.config/Code/User"
+mkdir -p "$HOME/.config/Antigravity IDE/User"
+cp -v "$SCRIPT_DIR/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
+cp -v "$SCRIPT_DIR/vscode/settings.json" "$HOME/.config/Antigravity IDE/User/settings.json"
+
 echo "🛠️  [4.5/5] Instalando scripts globales (open-editor)..."
 cp -v "$SCRIPT_DIR/scripts/open-editor.sh" "$HOME/.local/bin/open-editor"
 chmod +x "$HOME/.local/bin/open-editor"
