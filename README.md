@@ -1,4 +1,4 @@
-# 💻 Dotfiles - Mi Entorno de Trabajo
+# 💻 workspace-config - Mi Entorno de Trabajo
 
 Bienvenido a mi entorno personal de desarrollo en Linux. 
 
@@ -35,8 +35,8 @@ Si estás en un sistema limpio (Linux con KDE Plasma), sigue estos pasos para re
 
 1. **Clona este repositorio:**
    ```bash
-   git clone https://github.com/TU-USUARIO/dotfiles.git
-   cd dotfiles
+   git clone https://github.com/TU-USUARIO/workspace-config.git
+   cd workspace-config
    ```
 
 2. **Ejecuta el instalador mágico:**
