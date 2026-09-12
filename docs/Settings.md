@@ -25,9 +25,9 @@
   },
   "toolPermission": "always-proceed",
   "trustedWorkspaces": [
-    "/home/SenaFactory",
-    "/home/SenaFactory/Documentos/MyProjects",
-    "/home/SenaFactory/Documentos/MyProjects/ShortCuts",
-    "/home/SenaFactory/.gemini/antigravity-cli"
+    "/home/emerson",
+    "/home/emerson/Documents/Projects",
+    "/home/emerson/Documents/Projects/MyShortcuts",
+    "/home/emerson/.gemini/antigravity-cli"
   ]
 }

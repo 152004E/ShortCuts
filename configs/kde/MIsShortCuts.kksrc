@@ -2,11 +2,11 @@
 switch-to-activity-d0f7edf9-1dcd-476a-889a-00bf82152161=
 
 [Custom Commands][net.local.open-code.desktop]
-Exec=/home/SenaFactory/.local/bin/open-editor code
+Exec=/home/emerson/.local/bin/open-editor code
 Name=VsCode
 
 [Custom Commands][net.local.open-antigravity.desktop]
-Exec=/home/SenaFactory/.local/bin/open-editor antigravity
+Exec=/home/emerson/.local/bin/open-editor antigravity-ide
 Name=Antigravity IDE
 
 [KDE Keyboard Layout Switcher][Global Shortcuts]

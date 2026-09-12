@@ -2,5 +2,9 @@
     "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', monospace",
     "terminal.integrated.fontSize": 12,
     "terminal.external.linuxExec": "ghostty",
-    "terminal.integrated.copyOnSelection": true
+    "terminal.integrated.copyOnSelection": true,
+    "git.confirmSync": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay"
 }
